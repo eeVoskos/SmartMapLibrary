@@ -206,10 +206,11 @@ public class SmartLocationOverlay extends MyLocationOverlay {
 
 		// Set rotation if compass has orientation value
 		float orientation = getOrientation();
-		if (orientation != Float.NaN) {
-			matrix.setRotate(orientation - 45, mBitmap.getWidth() / 2,
-					mBitmap.getHeight() / 2);
+		if (orientation == Float.NaN) {
+			orientation = 0;
 		}
+		matrix.setRotate(orientation - 45, mBitmap.getWidth() / 2,
+				mBitmap.getHeight() / 2);
 
 		// Translate the GeoPoint to screen pixels
 		Point pointOnScreen = mapView.getProjection().toPixels(myLocation, null);
