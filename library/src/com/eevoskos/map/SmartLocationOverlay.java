@@ -2,6 +2,7 @@ package com.eevoskos.map;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
@@ -56,8 +57,14 @@ public class SmartLocationOverlay extends MyLocationOverlay {
 			OnLocationChangedListener onLocationChangedListener) {
 		super(context, mapView);
 		mMapView = mapView;
-		marker = (LevelListDrawable) mapView.getResources().getDrawable(
-				R.drawable.ic_my_location_animation);
+		/*marker = (LevelListDrawable) mapView.getResources().getDrawable(
+				R.drawable.ic_my_location_animation);*/
+		marker = new LevelListDrawable();
+		Resources res = context.getResources();
+		marker.addLevel(0, 2500, res.getDrawable(R.drawable.ic_my_location_anim0));
+		marker.addLevel(2501, 5000, res.getDrawable(R.drawable.ic_my_location_anim1));
+		marker.addLevel(5001, 7500, res.getDrawable(R.drawable.ic_my_location_anim2));
+		marker.addLevel(7501, 10000, res.getDrawable(R.drawable.ic_my_location_anim3));
 		level = marker.getLevel();
 		lastRedrawTime = 0;
 
